@@ -56,7 +56,7 @@ module Jekyll
           'project_name' => project_name,
           'files_count' => files_count,
           'branch' => branch,
-          'docker_tag' => docker_tag
+          'docker_tag' => docker_tag(branch)
         }.merge!(page_data)
       end
 
