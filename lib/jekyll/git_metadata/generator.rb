@@ -55,6 +55,7 @@ module Jekyll
         {
           'project_name' => project_name,
           'files_count' => files_count,
+          'branch' => branch
         }.merge!(page_data)
       end
 
@@ -127,6 +128,10 @@ module Jekyll
 
       def files_count
         %x{ git ls-tree -r HEAD }.lines.count
+      end
+
+      def branch
+        %x{ git rev-parse --abbrev-ref HEAD }
       end
 
       def git_installed?
