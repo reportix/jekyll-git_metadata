@@ -55,7 +55,8 @@ module Jekyll
         {
           'project_name' => project_name,
           'files_count' => files_count,
-          'branch' => branch
+          'branch' => branch,
+          'docker_tag' => docker_tag
         }.merge!(page_data)
       end
 
@@ -132,6 +133,14 @@ module Jekyll
 
       def branch
         %x{ git rev-parse --abbrev-ref HEAD }.strip
+      end
+
+      def docker_tag(branch)
+        if (branch =~ /^v[0-9]{1,2}\.[0-9]{1,2}\.[0-9]{1,2}$/)
+          branch
+        else
+          "vNEXT"
+        end
       end
 
       def git_installed?
