@@ -131,7 +131,7 @@ module Jekyll
       end
 
       def branch
-        %x{ git rev-parse --abbrev-ref HEAD }
+        %x{ git rev-parse --abbrev-ref HEAD }.strip
       end
 
       def git_installed?
